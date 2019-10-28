@@ -25,6 +25,7 @@ jobs:
       env:
         CI: true
     - uses: amondnet/now-deployment@v1
+      id: now-deploy
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         zeit-token: ${{ secrets.NOW_DEPLOY_KEY }}
@@ -35,5 +36,5 @@ jobs:
         author: ${{ github.actor }}
         branch: ${{ github.ref }}
         outputDirectory: /tmp/artifacts
-        urls: ${{ outputs.preview-url }}
+        urls: ${{ steps.now-deploy.outputs.preview-url }}
         sha: ${{ github.sha }}
