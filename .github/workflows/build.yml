@@ -45,7 +45,7 @@ jobs:
         name: Lighthouse reports
         path: /tmp/artifacts
     - name: Handle Lighthouse Check results
-      uses: foo-software/lighthouse-check-status-action
+      uses: foo-software/lighthouse-check-status-action@master
       with:
         lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
         minAccessibilityScore: "90"
