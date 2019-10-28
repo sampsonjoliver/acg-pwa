@@ -31,6 +31,7 @@ jobs:
         zeit-token: ${{ secrets.NOW_DEPLOY_KEY }}
     - run: mkdir /tmp/artifacts
     - name: Run Lighthouse
+      id: lighthouseCheck
       uses: foo-software/lighthouse-check-action@master
       with:
         author: ${{ github.actor }}
@@ -38,3 +39,17 @@ jobs:
         outputDirectory: /tmp/artifacts
         urls: ${{ steps.now-deploy.outputs.preview-url }}
         sha: ${{ github.sha }}
+    - name: Upload artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: Lighthouse reports
+        path: /tmp/artifacts
+    - name: Handle Lighthouse Check results
+      uses: foo-software/lighthouse-check-status-action
+      with:
+        lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+        minAccessibilityScore: "90"
+        minBestPracticesScore: "50"
+        minPerformanceScore: "50"
+        minProgressiveWebAppScore: "50"
+        minSeoScore: "50"
