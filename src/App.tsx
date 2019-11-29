@@ -1,20 +1,20 @@
 import React from 'react';
 import './App.css';
-import { Screen } from './components/Screen';
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Box,
-  Paper,
-} from '@material-ui/core';
 import { Auth0Provider } from './contexts/Auth0Provider';
-import { makeConfig } from './util/config';
 import { Dashboard } from './screens/Dashboard';
+import { ConfigProvider, useConfig } from './contexts/ConfigProvider';
+import { BottomNav } from './components/BottomNav';
+
+const ConfiguredApp: React.FC = () => {
+  return (
+    <ConfigProvider>
+      <App />
+    </ConfigProvider>
+  );
+};
 
 const App: React.FC = () => {
-  const [value, setValue] = React.useState(0);
-
-  const config = makeConfig();
+  const config = useConfig();
 
   return (
     <Auth0Provider
@@ -23,26 +23,10 @@ const App: React.FC = () => {
       redirect_uri={config.auth0.clientRedirectUri}
       onRedirectCallback={() => null}
     >
-      <Screen height="100vh" display="flex" flexDirection="column">
-        <Dashboard />
-        <Box position="fixed" bottom={0} width="100%">
-          <Paper elevation={8}>
-            <BottomNavigation
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              showLabels
-            >
-              <BottomNavigationAction label="Recents" />
-              <BottomNavigationAction label="Favorites" />
-              <BottomNavigationAction label="Nearby" />
-            </BottomNavigation>
-          </Paper>
-        </Box>
-      </Screen>
+      <Dashboard />
+      <BottomNav />
     </Auth0Provider>
   );
 };
 
-export default App;
+export default ConfiguredApp;

@@ -10,6 +10,7 @@ import { useAuth0 } from '../contexts/Auth0Provider';
 
 export const AppBar = () => {
   const auth = useAuth0();
+  console.log({ auth });
 
   return (
     <MuiAppBar position="static">
