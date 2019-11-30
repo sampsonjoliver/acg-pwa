@@ -7,10 +7,11 @@ import {
   Button,
 } from '@material-ui/core';
 import { useAuth0 } from '../contexts/Auth0Provider';
+import { useConfig } from '../contexts/ConfigProvider';
 
 export const AppBar = () => {
   const auth = useAuth0();
-  console.log({ auth });
+  const config = useConfig();
 
   return (
     <MuiAppBar position="static">
@@ -19,11 +20,19 @@ export const AppBar = () => {
           <Typography variant="h6">Dashboard</Typography>
         </Box>
         {!auth.isAuthenticated && (
-          <Button onClick={() => auth.loginWithRedirect()}>Login</Button>
+          <Button
+            onClick={() =>
+              auth.login({ redirectUri: config.auth0.clientRedirectUri })
+            }
+          >
+            Login
+          </Button>
         )}
         {auth.isAuthenticated && (
           <Button
-            onClick={() => auth.logout({ returnTo: 'http://localhost:3000/' })}
+            onClick={() =>
+              auth.logout({ returnTo: config.auth0.logoutReturnTo })
+            }
           >
             Logout
           </Button>

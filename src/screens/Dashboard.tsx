@@ -1,14 +1,11 @@
 import React from 'react';
 
 import {
-  BottomNavigation,
-  BottomNavigationAction,
   Box,
   Typography,
   GridList,
   GridListTile,
   GridListTileBar,
-  Paper,
 } from '@material-ui/core';
 import { AppBar } from '../components/AppBar';
 import { Screen } from '../components/Screen';

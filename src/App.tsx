@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Auth0Provider } from './contexts/Auth0Provider';
 import { Dashboard } from './screens/Dashboard';
-import { ConfigProvider, useConfig } from './contexts/ConfigProvider';
+import { ConfigProvider } from './contexts/ConfigProvider';
 import { BottomNav } from './components/BottomNav';
 
 const ConfiguredApp: React.FC = () => {
@@ -14,15 +14,8 @@ const ConfiguredApp: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  const config = useConfig();
-
   return (
-    <Auth0Provider
-      client_id={config.auth0.clientId}
-      domain={config.auth0.clientDomain}
-      redirect_uri={config.auth0.clientRedirectUri}
-      onRedirectCallback={() => null}
-    >
+    <Auth0Provider onRedirectCallback={() => null}>
       <Dashboard />
       <BottomNav />
     </Auth0Provider>
