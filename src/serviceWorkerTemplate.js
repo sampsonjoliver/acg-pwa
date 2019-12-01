@@ -14,7 +14,7 @@ if (workbox) {
 
   // Font caching
   workbox.routing.registerRoute(
-    new RegExp('https://fonts.(?:.googlepis|gstatic).com/(.*)'),
+    new RegExp('https://fonts.(?:.googleapis|gstatic).com/(.*)'),
     workbox.strategies.cacheFirst({
       cacheName: 'googleapis',
       plugins: [
@@ -27,10 +27,13 @@ if (workbox) {
 
   // Image caching
   workbox.routing.registerRoute(
-    /\.(?:png|gif|jpg|jpeg|svg)/,
+    new RegExp('https://.*(?:png|gif|jpg|jpeg|svg).*'),
     workbox.strategies.cacheFirst({
       cacheName: 'images',
       plugins: [
+        new workbox.cacheableResponse.Plugin({
+          statuses: [0, 200],
+        }),
         new workbox.expiration.Plugin({
           maxEntries: 60,
           maxAgeSeconds: 30 * 24 * 60 * 60,
