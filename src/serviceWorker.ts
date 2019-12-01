@@ -113,7 +113,7 @@ const isValidServiceWorker = async (scriptUrl: string) => {
       navigator.serviceWorker.ready.then(registration => {
         registration.unregister().then(() => {
           console.log('Unregistered', scriptUrl);
-          // window.location.reload();
+          window.location.reload();
         });
       });
       return false;

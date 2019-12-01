@@ -26,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "makeServiceWorker": "node ./src/makeServiceWorker.js",
-    "preBuild": "makeServiceWorker",
+    "postbuild": "node ./src/makeServiceWorker.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

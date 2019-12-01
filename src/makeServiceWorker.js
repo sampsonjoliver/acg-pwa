@@ -6,7 +6,7 @@ const buildSW = () => {
       swSrc: 'src/serviceWorkerTemplate.js',
       swDest: 'build/serviceWorker.js',
       globDirectory: 'build',
-      globPatterns: ['**/*.{js,css,html,png,svg}'],
+      globPatterns: ['**/*.{js,css,html,png,svg,json,ico,woff,woff2}'],
       maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
     })
     .then(({ count, size, warnings }) => {
