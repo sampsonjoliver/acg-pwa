@@ -94,7 +94,11 @@ export const Dashboard = () => {
                   key={`${index}-${index2}-${tile.img}`}
                   style={{ width: '224px', height: '224px' }}
                 >
-                  <img src={tile.img} alt={tile.title} />
+                  <img
+                    src={tile.img}
+                    alt={tile.title}
+                    crossOrigin="anonymous"
+                  />
                   <GridListTileBar title={tile.title} />
                 </GridListTile>
               ))}
