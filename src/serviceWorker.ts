@@ -25,37 +25,11 @@ type Config = {
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
 };
 
-export const registerImageWorker = () => {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    const publicUrl = new URL(
-      (process as { env: { [key: string]: string } }).env.PUBLIC_URL,
-      window.location.href
-    );
-
-    if (publicUrl.origin !== window.location.origin) {
-      return;
-    }
-
-    window.addEventListener('load', () => {
-      const scriptUrl = `${process.env.PUBLIC_URL}/image-worker.js`;
-
-      if (isLocalhost) {
-        const isValid = isValidServiceWorker(scriptUrl);
-        if (isValid) {
-          navigator.serviceWorker.register(scriptUrl, {
-            scope: './',
-          });
-        }
-      } else {
-        navigator.serviceWorker.register(scriptUrl, {
-          scope: './',
-        });
-      }
-    });
-  }
-};
-export function registerAppWorker(config?: Config) {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+export function registerWorker(config?: Config) {
+  if (
+    (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) ||
+    true
+  ) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(
       (process as { env: { [key: string]: string } }).env.PUBLIC_URL,
@@ -69,7 +43,7 @@ export function registerAppWorker(config?: Config) {
     }
 
     window.addEventListener('load', async () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      const swUrl = `${process.env.PUBLIC_URL}/serviceWorker.js`;
 
       if (isLocalhost) {
         const isValid = await isValidServiceWorker(swUrl);
@@ -138,7 +112,8 @@ const isValidServiceWorker = async (scriptUrl: string) => {
       // No service worker found. Probably a different app. Reload the page.
       navigator.serviceWorker.ready.then(registration => {
         registration.unregister().then(() => {
-          window.location.reload();
+          console.log('Unregistered', scriptUrl);
+          // window.location.reload();
         });
       });
       return false;

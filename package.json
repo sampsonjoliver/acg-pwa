@@ -25,6 +25,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "makeServiceWorker": "node ./src/makeServiceWorker.js",
+    "preBuild": "makeServiceWorker",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,6 +53,7 @@
     "@types/lodash.get": "^4.4.6",
     "lighthouse-cli": "^0.1.2",
     "now": "^16.4.3",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "workbox-build": "^4.3.1"
   }
 }
