@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 import { Auth0Provider } from './contexts/Auth0Provider';
-import { Dashboard } from './screens/Dashboard';
 import { ConfigProvider } from './contexts/ConfigProvider';
 import { BottomNav } from './components/BottomNav';
+import { Router } from './components/Router';
+import { BrowserRouter } from 'react-router-dom';
 
 const ConfiguredApp: React.FC = () => {
   return (
@@ -16,8 +17,10 @@ const ConfiguredApp: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Auth0Provider onRedirectCallback={() => null}>
-      <Dashboard />
-      <BottomNav />
+      <BrowserRouter>
+        <Router />
+        <BottomNav />
+      </BrowserRouter>
     </Auth0Provider>
   );
 };
