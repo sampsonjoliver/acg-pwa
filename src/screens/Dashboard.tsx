@@ -75,37 +75,30 @@ const tiles = [
 
 export const Dashboard = () => {
   return (
-    <Screen height="100vh" display="flex" flexDirection="column">
-      <AppBar />
-      <Box bgcolor="#048264" flex="1 0 auto" padding={1} pb="56px">
-        <Box mb={2}>
-          <Typography component="h1" variant="h3">
-            Hi, Sampson
-          </Typography>
-        </Box>
-        {[0, 1, 2].map(index => (
-          <Box mb={2}>
-            <Typography component="h2" variant="h4">
-              Your Courses
-            </Typography>
-            <GridList style={{ flexWrap: 'nowrap' }}>
-              {tiles.map((tile, index2) => (
-                <GridListTile
-                  key={`${index}-${index2}-${tile.img}`}
-                  style={{ width: '224px', height: '224px' }}
-                >
-                  <img
-                    src={tile.img}
-                    alt={tile.title}
-                    crossOrigin="anonymous"
-                  />
-                  <GridListTileBar title={tile.title} />
-                </GridListTile>
-              ))}
-            </GridList>
-          </Box>
-        ))}
+    <Box flex="1 0 auto" padding={1} pb="56px">
+      <Box mb={2}>
+        <Typography component="h1" variant="h3">
+          Hi, Sampson
+        </Typography>
       </Box>
-    </Screen>
+      {[0, 1, 2].map(index => (
+        <Box mb={2}>
+          <Typography component="h2" variant="h4">
+            Your Courses
+          </Typography>
+          <GridList style={{ flexWrap: 'nowrap' }}>
+            {tiles.map((tile, index2) => (
+              <GridListTile
+                key={`${index}-${index2}-${tile.img}`}
+                style={{ width: '224px', height: '224px' }}
+              >
+                <img src={tile.img} alt={tile.title} crossOrigin="anonymous" />
+                <GridListTileBar title={tile.title} />
+              </GridListTile>
+            ))}
+          </GridList>
+        </Box>
+      ))}
+    </Box>
   );
 };
