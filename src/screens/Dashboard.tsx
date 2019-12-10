@@ -6,6 +6,7 @@ import {
   GridList,
   GridListTile,
   GridListTileBar,
+  Grow,
 } from '@material-ui/core';
 import { AppBar } from '../components/AppBar';
 import { Screen } from '../components/Screen';
@@ -88,13 +89,23 @@ export const Dashboard = () => {
           </Typography>
           <GridList style={{ flexWrap: 'nowrap' }}>
             {tiles.map((tile, index2) => (
-              <GridListTile
-                key={`${index}-${index2}-${tile.img}`}
-                style={{ width: '224px', height: '224px' }}
+              <Grow
+                in={true}
+                style={{ transformOrigin: '0 0 0' }}
+                timeout={650}
               >
-                <img src={tile.img} alt={tile.title} crossOrigin="anonymous" />
-                <GridListTileBar title={tile.title} />
-              </GridListTile>
+                <GridListTile
+                  key={`${index}-${index2}-${tile.img}`}
+                  style={{ width: '224px', height: '224px' }}
+                >
+                  <img
+                    src={tile.img}
+                    alt={tile.title}
+                    crossOrigin="anonymous"
+                  />
+                  <GridListTileBar title={tile.title} />
+                </GridListTile>
+              </Grow>
             ))}
           </GridList>
         </Box>
