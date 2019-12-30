@@ -5,16 +5,26 @@ import { Downloads } from '../screens/Downloads';
 import { Settings } from '../screens/Settings';
 import { Screen } from './Screen';
 import { AppBar } from './AppBar';
+import { BottomNav } from '../components/BottomNav';
+import { colours } from '../theme';
+
 import { Fade, Box } from '@material-ui/core';
 
 export const Router: React.FC = () => {
   return (
     <Screen height="100vh" display="flex" flexDirection="column">
-      <AppBar />
+      <Box
+          bgcolor={colours.navy600}
+          height="100vh"
+          width="100vw"
+          position="fixed"
+          zIndex={-100}
+        />
+        <AppBar />
       <Route path="/downloads">
         {({ match }) => (
           <Fade in={match != null} unmountOnExit>
-            <Box position="absolute" width="100vw" mt="64px">
+            <Box position="absolute" width="100vw" mt="64px" pb="56px">
               <Downloads />
             </Box>
           </Fade>
@@ -23,22 +33,23 @@ export const Router: React.FC = () => {
       <Route path="/settings">
         {({ match }) => (
           <Fade in={match != null} unmountOnExit>
-            <Box position="absolute" width="100vw" mt="64px">
+            <Box position="absolute" width="100vw" mt="64px" pb="56px">
               <Settings />
             </Box>
           </Fade>
         )}
-        <Settings />
       </Route>
       <Route path="/" exact>
         {({ match }) => (
           <Fade in={match != null} unmountOnExit>
-            <Box position="absolute" width="100vw" mt="64px">
+            <Box position="absolute" width="100vw" mt="64px" pb="56px">
               <Dashboard />
             </Box>
           </Fade>
         )}
       </Route>
+      <BottomNav />
+
     </Screen>
   );
 };

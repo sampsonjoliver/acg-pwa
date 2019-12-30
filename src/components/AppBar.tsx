@@ -14,6 +14,7 @@ export const AppBar = () => {
   const config = useConfig();
 
   return (
+    <Box position="fixed" top={0} width="100%" zIndex={100}>
     <MuiAppBar position="static">
       <Toolbar>
         <Box flexGrow={1}>
@@ -39,5 +40,6 @@ export const AppBar = () => {
         )}
       </Toolbar>
     </MuiAppBar>
+    </Box>
   );
 };

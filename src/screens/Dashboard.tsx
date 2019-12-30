@@ -76,7 +76,7 @@ const tiles = [
 
 export const Dashboard = () => {
   return (
-    <Box flex="1 0 auto" padding={1} pb="56px">
+    <Box flex="1 0 auto" padding={1}>
       <Box mb={2}>
         <Typography component="h1" variant="h3">
           Hi, Sampson
