@@ -7,8 +7,8 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-export const BottomNav = () => {
-  const [value, setValue] = React.useState(0);
+export const BottomNav: React.FC<{ index: number }> = ({ index }) => {
+  const [value, setValue] = React.useState(index);
 
   return (
     <Box position="fixed" bottom={0} width="100%">
@@ -26,7 +26,7 @@ export const BottomNav = () => {
             component={Link}
             to="/downloads"
             label="Downloads"
-          ></BottomNavigationAction>
+          />
 
           <BottomNavigationAction
             component={Link}

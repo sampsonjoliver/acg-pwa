@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Box,
   Typography,
@@ -8,8 +7,6 @@ import {
   GridListTileBar,
   Grow,
 } from '@material-ui/core';
-import { AppBar } from '../components/AppBar';
-import { Screen } from '../components/Screen';
 
 const tiles = [
   {
