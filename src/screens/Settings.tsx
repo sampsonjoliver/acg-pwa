@@ -69,10 +69,11 @@ export const Settings = () => {
   const auth = useAuth0();
 
   return (
-    <Container maxWidth="sm">
+    <Container fixed>
       <Box
         display="flex"
-        padding={3}
+        pt={3}
+        px={[0, 0, 3]}
         alignItems="center"
         flexDirection="column"
       >
