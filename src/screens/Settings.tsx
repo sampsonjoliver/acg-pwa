@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
@@ -17,13 +17,21 @@ import {
   withStyles,
 } from '@material-ui/core';
 
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import TuneIcon from '@material-ui/icons/Tune';
 import LockIcon from '@material-ui/icons/Lock';
 import WifiIcon from '@material-ui/icons/Wifi';
 import AddPhotoIcon from '@material-ui/icons/AddAPhoto';
 import NotificationsActive from '@material-ui/icons/NotificationsActive';
 import ChevronRight from '@material-ui/icons/ChevronRight';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import SubjectIcon from '@material-ui/icons/Subject';
+import PolicyIcon from '@material-ui/icons/Policy';
+
 import { useAuth0 } from '../contexts/Auth0Provider';
+import { PlaybackSettings } from './PlaybackSettings';
+import { NotificationSettings } from './NotificationSettings';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -50,6 +58,13 @@ const SmallIcon = withStyles(theme => ({
 }))(AddPhotoIcon);
 
 export const Settings = () => {
+  const [isPlaybackSettingsOpen, setPlaybacksettingsOpen] = useState(false);
+  const [isNotificationSettingsOpen, setNotificationSettingsOpen] = useState(
+    false
+  );
+  const [isWifiDownloadsOnly, setWifiDownloadsOnly] = useState(false);
+  const [isNotificationsEnabled, setNotificationsEnabled] = useState(false);
+
   const styles = useStyles();
   const auth = useAuth0();
 
@@ -80,48 +95,119 @@ export const Settings = () => {
           {JSON.stringify(auth.user) || 'Anonymous User'}
         </Typography>
 
+        <PlaybackSettings
+          open={isPlaybackSettingsOpen}
+          onClose={() => setPlaybacksettingsOpen(false)}
+        />
+
+        <NotificationSettings
+          open={isNotificationSettingsOpen}
+          onClose={() => setNotificationSettingsOpen(false)}
+        />
+
         <Box width="100%">
           <List subheader={<ListSubheader>Settings</ListSubheader>}>
-            <ListItem>
+            <ListItem
+              button
+              onClick={() => setWifiDownloadsOnly(!isWifiDownloadsOnly)}
+            >
               <ListItemIcon>
                 <WifiIcon />
               </ListItemIcon>
-              <ListItemText id="switch-list-label-wifi">
-                Wifi-only Downloads
-              </ListItemText>
+              <ListItemText
+                primary="Wifi-only Downloads"
+                secondary="Disable cellular downloads to prevent nasty bill shock"
+              ></ListItemText>
               <ListItemSecondaryAction>
-                <Switch edge="end" />
+                <Switch
+                  edge="end"
+                  checked={isWifiDownloadsOnly}
+                  onChange={(event, checked) => setWifiDownloadsOnly(checked)}
+                />
               </ListItemSecondaryAction>
             </ListItem>
-
-            <ListItem button onClick={() => console.log('In progress')}>
+            <ListItem button onClick={() => setNotificationSettingsOpen(true)}>
               <ListItemIcon>
                 <NotificationsActive />
               </ListItemIcon>
-              <ListItemText id="switch-list-label-wifi">
-                Notifications
-              </ListItemText>
+              <ListItemText
+                primary="Notifications"
+                secondary="Receive notifications when new content gets added"
+              />
               <ListItemSecondaryAction style={{ display: 'flex' }}>
                 <Box display="flex">
                   <Divider orientation="vertical" />
-                  <Switch edge="end" />
+                  <Switch
+                    edge="end"
+                    checked={isNotificationsEnabled}
+                    onChange={(event, checked) =>
+                      setNotificationsEnabled(checked)
+                    }
+                  />
                 </Box>
               </ListItemSecondaryAction>
             </ListItem>
-
-            <ListItem button onClick={() => console.log('In progress')}>
+            <ListItem button onClick={() => setPlaybacksettingsOpen(true)}>
               <ListItemIcon>
                 <TuneIcon />
               </ListItemIcon>
-              <ListItemText id="switch-list-label-wifi">
-                Playback Settings
-              </ListItemText>
+              <ListItemText
+                primary="Playback Settings"
+                secondary="Configure your playback options, such as default playback speed"
+              />
+
               <ListItemSecondaryAction>
                 <ChevronRight />
               </ListItemSecondaryAction>
             </ListItem>
+            <Divider />
+            <ListItem button onClick={() => console.log('In progress')}>
+              <ListItemIcon>
+                <FeedbackIcon />
+              </ListItemIcon>
+              <ListItemText id="switch-list-label-wifi">
+                Send Feedback
+              </ListItemText>
+              <ListItemSecondaryAction>
+                <OpenInNewIcon color="disabled" />
+              </ListItemSecondaryAction>
+            </ListItem>
+            <ListItem button onClick={() => console.log('In progress')}>
+              <ListItemIcon>
+                <ContactSupportIcon />
+              </ListItemIcon>
+              <ListItemText id="switch-list-label-wifi">
+                Help and Support
+              </ListItemText>
+              <ListItemSecondaryAction>
+                <OpenInNewIcon color="disabled" />
+              </ListItemSecondaryAction>
+            </ListItem>
 
             <ListItem button onClick={() => console.log('In progress')}>
+              <ListItemIcon>
+                <SubjectIcon />
+              </ListItemIcon>
+              <ListItemText id="switch-list-label-wifi">
+                Terms of Use
+              </ListItemText>
+              <ListItemSecondaryAction>
+                <OpenInNewIcon color="disabled" />
+              </ListItemSecondaryAction>
+            </ListItem>
+            <ListItem button onClick={() => console.log('In progress')}>
+              <ListItemIcon>
+                <PolicyIcon />
+              </ListItemIcon>
+              <ListItemText id="switch-list-label-wifi">
+                Privacy Policy
+              </ListItemText>
+              <ListItemSecondaryAction>
+                <OpenInNewIcon color="disabled" />
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider />
+            <ListItem button onClick={() => auth.logout()}>
               <ListItemIcon>
                 <LockIcon />
               </ListItemIcon>
