@@ -13,37 +13,73 @@ import {
   Container,
   makeStyles,
   Divider,
+  Badge,
+  withStyles,
 } from '@material-ui/core';
-import WifiIcon from '@material-ui/icons/Wifi';
 
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import TuneIcon from '@material-ui/icons/Tune';
+import LockIcon from '@material-ui/icons/Lock';
+import WifiIcon from '@material-ui/icons/Wifi';
+import AddPhotoIcon from '@material-ui/icons/AddAPhoto';
 import NotificationsActive from '@material-ui/icons/NotificationsActive';
 import ChevronRight from '@material-ui/icons/ChevronRight';
+import { useAuth0 } from '../contexts/Auth0Provider';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
+    width: theme.spacing(10),
+    height: theme.spacing(10),
   },
 }));
 
+const SmallAvatar = withStyles(theme => ({
+  root: {
+    width: 22,
+    height: 22,
+    left: '-2px',
+    top: '-2px',
+    backgroundColor: theme.palette.action.disabled,
+  },
+}))(Avatar);
+
+const SmallIcon = withStyles(theme => ({
+  root: {
+    width: 12,
+    height: 12,
+  },
+}))(AddPhotoIcon);
+
 export const Settings = () => {
   const styles = useStyles();
+  const auth = useAuth0();
 
   return (
     <Container maxWidth="sm">
       <Box
         display="flex"
-        flex="1 0 auto"
-        padding={1}
+        padding={3}
         alignItems="center"
         flexDirection="column"
       >
-        <Avatar className={styles.avatar}>SO</Avatar>
+        <Badge
+          overlap="circle"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          badgeContent={
+            <SmallAvatar>
+              <SmallIcon fontSize="small" />
+            </SmallAvatar>
+          }
+        >
+          <Avatar className={styles.avatar}>SO</Avatar>
+        </Badge>
+        <Box pt={1} />
         <Typography component="h1" variant="h5">
-          Sampson Oliver
+          {JSON.stringify(auth.user) || 'Anonymous User'}
         </Typography>
+
         <Box width="100%">
           <List subheader={<ListSubheader>Settings</ListSubheader>}>
             <ListItem>
@@ -75,7 +111,7 @@ export const Settings = () => {
 
             <ListItem button onClick={() => console.log('In progress')}>
               <ListItemIcon>
-                <NotificationsActive />
+                <TuneIcon />
               </ListItemIcon>
               <ListItemText id="switch-list-label-wifi">
                 Playback Settings
@@ -87,7 +123,7 @@ export const Settings = () => {
 
             <ListItem button onClick={() => console.log('In progress')}>
               <ListItemIcon>
-                <NotificationsActive />
+                <LockIcon />
               </ListItemIcon>
               <ListItemText id="switch-list-label-wifi">Logout</ListItemText>
               <ListItemSecondaryAction>
