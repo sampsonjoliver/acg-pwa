@@ -1,5 +1,7 @@
 import { useRouteMatch } from 'react-router';
 
+type ScreenName = 'video' | 'dashboard' | 'downloads' | 'settings';
+
 export const useNavigator = () => {
   const dashboardMatch = useRouteMatch({
     path: '/',
@@ -12,13 +14,19 @@ export const useNavigator = () => {
     path: '/settings',
   });
 
-  const matchers = [dashboardMatch, downloadsMatch, settingsMatch];
+  const videoMatch = useRouteMatch({
+    path: '/video',
+  });
+
+  const screens: ScreenName[] = ['dashboard', 'downloads', 'settings', 'video'];
+  const matchers = [dashboardMatch, downloadsMatch, settingsMatch, videoMatch];
   const matchedIndex = matchers.findIndex(it => !!it);
-  const titles = ['Dashboard', 'Downloads', 'Settings'];
+  const titles = ['Dashboard', 'Downloads', 'Settings', 'Video'];
 
   return {
+    screen: screens[matchedIndex],
     index: matchedIndex,
     title: titles[matchedIndex],
-    match: dashboardMatch || downloadsMatch || settingsMatch,
+    match: dashboardMatch || downloadsMatch || settingsMatch || videoMatch,
   };
 };

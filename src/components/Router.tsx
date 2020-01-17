@@ -9,6 +9,7 @@ import { Downloads } from '../screens/Downloads';
 import { Settings } from '../screens/Settings';
 
 import { useNavigator } from '../hooks/useNavigator';
+import { VideoPlayer } from '../screens/VideoPlayer';
 
 export const Router: React.FC = () => {
   const match = useNavigator();
@@ -32,6 +33,12 @@ export const Router: React.FC = () => {
       <Fade in={match.index === 2} unmountOnExit>
         <Box position="absolute" width="100vw" mt="64px" pb="56px">
           <Settings />
+        </Box>
+      </Fade>
+
+      <Fade in={match.screen === 'video'} unmountOnExit>
+        <Box position="absolute" width="100vw" mt="64px" pb="56px">
+          <VideoPlayer />
         </Box>
       </Fade>
 

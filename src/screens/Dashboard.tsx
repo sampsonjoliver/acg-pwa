@@ -7,6 +7,7 @@ import {
   GridListTileBar,
   Grow,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const tiles = [
   {
@@ -72,6 +73,7 @@ const tiles = [
 ];
 
 export const Dashboard = () => {
+  // const router = useLo
   return (
     <Box flex="1 0 auto" padding={1}>
       <Box mb={2}>
@@ -95,12 +97,14 @@ export const Dashboard = () => {
                   key={`${index}-${index2}-${tile.img}`}
                   style={{ width: '224px', height: '224px' }}
                 >
-                  <img
-                    src={tile.img}
-                    alt={tile.title}
-                    crossOrigin="anonymous"
-                  />
-                  <GridListTileBar title={tile.title} />
+                  <Link to="/video?componentId=123">
+                    <img
+                      src={tile.img}
+                      alt={tile.title}
+                      crossOrigin="anonymous"
+                    />
+                    <GridListTileBar title={tile.title} />
+                  </Link>
                 </GridListTile>
               </Grow>
             ))}
