@@ -3,12 +3,12 @@ import jwtDecode from 'jwt-decode';
 export type JwtDecodedData = {
   'https://ns.acloud.guru/roles'?: {
     member: boolean;
-    enhancedSyllabus: boolean;
-    forumWriteAccess: boolean;
-    organisationAdmin: boolean;
-    admin: boolean;
+    enhancedSyllabus?: boolean;
+    forumWriteAccess?: boolean;
+    organisationAdmin?: boolean;
+    admin?: boolean;
   };
-  'https://ns.acloud.guru/organisationId': string;
+  'https://ns.acloud.guru/organisationId'?: string;
   iss: string;
   sub: string;
   aud: string[];

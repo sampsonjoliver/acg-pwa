@@ -44,7 +44,7 @@ export const makeGetActiveUser = ({
     const isMember = get(decodedToken, 'https://ns.acloud.guru/roles', {
       member: false,
     }).member;
-    const organisationId =
+    const organisationId: string | undefined =
       decodedToken['https://ns.acloud.guru/organisationId'];
 
     return {
@@ -57,5 +57,6 @@ export const makeGetActiveUser = ({
       }),
     };
   }
+
   return null;
 };

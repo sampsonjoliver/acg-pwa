@@ -22,7 +22,7 @@ export const Auth0Provider: React.FC<Auth0ProviderProps> = ({
 }) => {
   const config = useConfig();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState<GetActiveUser>();
+  const [user, setUser] = useState<GetActiveUser>(null);
   const [loading, setLoading] = useState(true);
 
   const auth0Client = makeAuthService({
@@ -86,7 +86,7 @@ type Auth0ContextClient = ReturnType<typeof makeAuth0>;
 
 const makeAuth0 = (
   isAuthenticated: boolean,
-  user: any,
+  user: GetActiveUser | null,
   loading: boolean,
   handleRedirectCallback: () => Promise<void>,
   auth0Client: AuthService

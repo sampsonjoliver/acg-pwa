@@ -93,7 +93,7 @@ export const Settings = () => {
         </Badge>
         <Box pt={1} />
         <Typography component="h1" variant="h5">
-          {JSON.stringify(auth.user) || 'Anonymous User'}
+          {auth.user?.userId || 'Anonymous User'}
         </Typography>
 
         <PlaybackSettings
