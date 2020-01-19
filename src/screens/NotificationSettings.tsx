@@ -11,15 +11,12 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Menu,
-  MenuItem,
   ListSubheader,
   Checkbox,
   Divider,
   Container,
 } from '@material-ui/core';
 
-import ChevronRight from '@material-ui/icons/ChevronRight';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const Transition = React.forwardRef((props, ref) => {

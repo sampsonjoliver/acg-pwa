@@ -1,12 +1,13 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
+
 import './App.css';
+
 import { Auth0Provider } from './contexts/Auth0Provider';
 import { ConfigProvider } from './contexts/ConfigProvider';
 import { Router } from './components/Router';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blue, pink } from '@material-ui/core/colors';
-import { CssBaseline } from '@material-ui/core';
 import { ServiceWorkerProvider } from './contexts/ServiceWorker';
 import { ServiceWorkerUpdateToast } from './components/ServiceWorkerUpdateToast';
 
