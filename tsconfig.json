@@ -15,5 +15,9 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "exclude": ["src/makeServiceWorker.js", "src/serviceWorkerTemplate.js"]
+  "exclude": [
+    "makeServiceWorker.js",
+    "src/util/serviceWorker/service-worker.js"
+  ],
+  "include": ["src"]
 }

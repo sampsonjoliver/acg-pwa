@@ -22,11 +22,12 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "typeface-roboto": "^0.0.75",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "workbox-window": "^4.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "makeServiceWorker": "node ./src/makeServiceWorker.js",
+    "makeServiceWorker": "node ./makeServiceWorker.js",
     "postbuild": "yarn makeServiceWorker",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -53,6 +54,7 @@
     "@types/jwt-decode": "^2.2.1",
     "@types/lodash.get": "^4.4.6",
     "@types/react-router-dom": "^5.1.3",
+    "@types/workbox-window": "^4.3.3",
     "lighthouse-cli": "^0.1.2",
     "now": "^16.4.3",
     "prettier": "^1.18.2",

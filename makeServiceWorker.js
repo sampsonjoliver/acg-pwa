@@ -3,7 +3,7 @@ const workboxBuild = require('workbox-build');
 const buildSW = () => {
   return workboxBuild
     .injectManifest({
-      swSrc: 'src/serviceWorkerTemplate.js',
+      swSrc: 'src/util/serviceWorker/service-worker.js',
       swDest: 'build/service-worker.js',
       globDirectory: 'build',
       globPatterns: ['**/*.{js,css,html,png,svg,json,ico,woff,woff2}'],
