@@ -11,10 +11,14 @@ export const registerServiceWorker = async () => {
   if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
     const workbox = new Workbox(SERVICE_WORKER);
 
-    workbox.addEventListener('activated', event => {
+    workbox.active.then(() =>
       console.log(
         'This web app is being served cache-first by a service worker'
-      );
+      )
+    );
+
+    workbox.addEventListener('activated', () => {
+      console.log('A new service worker has been activated =)');
     });
 
     workbox.addEventListener('waiting', () =>
