@@ -2,18 +2,27 @@ import React, { useState } from 'react';
 import { Snackbar, Grow, Button, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
-import { useServiceWorkerHasUpdate } from '../contexts/ServiceWorker';
+import {
+  useServiceWorkerHasUpdate,
+  useServiceWorker,
+} from '../contexts/ServiceWorker';
 
 const GrowTransition: React.FC = props => {
   return <Grow {...props} />;
 };
 
 export const ServiceWorkerUpdateToast: React.FC = () => {
+  const serviceWorker = useServiceWorker();
   const [hasBeenDismissed, setHasBeenDismissed] = useState(false);
   const hasUpdate = useServiceWorkerHasUpdate();
 
   const handleClose = () => setHasBeenDismissed(true);
-  const handleRefresh = () => window.location.reload();
+  const handleRefresh = () => {
+    serviceWorker?.workbox.messageSW({ type: 'SKIP_WAITING' });
+    serviceWorker?.workbox.addEventListener('controlling', () => {
+      window.location.reload();
+    });
+  };
 
   return (
     <Snackbar

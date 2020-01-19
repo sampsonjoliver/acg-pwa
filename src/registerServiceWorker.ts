@@ -13,7 +13,7 @@ export const registerServiceWorker = async () => {
 
     workbox.active.then(() =>
       console.log(
-        'This web app is being served cache-first by a service worker'
+        'This web app is being served cache-first by a service worker.'
       )
     );
 
@@ -21,9 +21,9 @@ export const registerServiceWorker = async () => {
       console.log('A new service worker has been activated =)');
     });
 
-    workbox.addEventListener('waiting', () =>
-      console.log('Service worker update is stuck waiting')
-    );
+    workbox.addEventListener('waiting', () => {
+      console.log('Service worker update is stuck waiting');
+    });
 
     workbox.addEventListener('installed', event => {
       if (event.isUpdate) {

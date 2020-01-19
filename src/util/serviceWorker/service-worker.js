@@ -5,6 +5,12 @@ importScripts(
 if (workbox) {
   workbox.precaching.precacheAndRoute([]);
 
+  self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+      self.skipWaiting();
+    }
+  });
+
   workbox.routing.registerNavigationRoute(
     workbox.precaching.getCacheKeyForURL('/index.html'),
     {
