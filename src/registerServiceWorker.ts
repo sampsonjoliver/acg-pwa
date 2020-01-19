@@ -25,7 +25,7 @@ type Config = {
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
 };
 
-export function registerWorker(config?: Config) {
+export function registerServiceWorker(config?: Config) {
   if (
     (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) ||
     true
@@ -43,7 +43,7 @@ export function registerWorker(config?: Config) {
     }
 
     window.addEventListener('load', async () => {
-      const swUrl = `${process.env.PUBLIC_URL}/serviceWorker.js`;
+      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
         const isValid = await isValidServiceWorker(swUrl);

@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "makeServiceWorker": "node ./src/makeServiceWorker.js",
-    "postbuild": "node ./src/makeServiceWorker.js",
+    "postbuild": "yarn makeServiceWorker",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
