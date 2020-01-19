@@ -10,7 +10,7 @@ import {
 import { useAuth0 } from '../contexts/Auth0Provider';
 import { useConfig } from '../contexts/ConfigProvider';
 
-export const AppBar: React.FC<{ title: string }> = ({ title }) => {
+export const AppBar: React.FC<{ title: string }> = ({ title, children }) => {
   const auth = useAuth0();
   const config = useConfig();
 
@@ -18,6 +18,7 @@ export const AppBar: React.FC<{ title: string }> = ({ title }) => {
     <Box position="fixed" top={0} width="100%" zIndex={100}>
       <MuiAppBar position="static">
         <Toolbar>
+          {children}
           <Box flexGrow={1}>
             <Typography variant="h6">{title}</Typography>
           </Box>
