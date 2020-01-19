@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { blue, pink } from '@material-ui/core/colors';
 import { CssBaseline } from '@material-ui/core';
+import { ServiceWorkerProvider } from './contexts/ServiceWorker';
+import { ServiceWorkerUpdateToast } from './components/ServiceWorkerUpdateToast';
 
 const ConfiguredApp: React.FC = () => {
   return (
@@ -26,10 +28,13 @@ const App: React.FC = () => {
   return (
     <Auth0Provider onRedirectCallback={() => null}>
       <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Router />
-        </ThemeProvider>
+        <ServiceWorkerProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Router />
+            <ServiceWorkerUpdateToast />
+          </ThemeProvider>
+        </ServiceWorkerProvider>
       </BrowserRouter>
     </Auth0Provider>
   );
