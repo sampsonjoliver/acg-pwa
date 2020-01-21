@@ -13,6 +13,7 @@ import {
   ListItemSecondaryAction,
 } from '@material-ui/core';
 import ReactPlayer from 'react-player';
+import SwipeableViews from 'react-swipeable-views';
 
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -61,7 +62,11 @@ const VideoTabs: React.FC = () => {
         <Tab label="Up Next" />
       </Tabs>
 
-      {activeTab === 0 && (
+      <SwipeableViews
+        axis="x"
+        index={activeTab}
+        onChangeIndex={(index: number) => setActiveTab(index)}
+      >
         <List style={{ overflowY: 'auto' }}>
           <ListItem button>
             <ListItemAvatar>
@@ -100,8 +105,7 @@ const VideoTabs: React.FC = () => {
             </ListItemSecondaryAction>
           </ListItem>
         </List>
-      )}
-      {activeTab === 1 && (
+
         <List style={{ overflowY: 'auto' }}>
           <ListItem button>
             <Box height="40px" width="60px" mr={2}>
@@ -145,7 +149,7 @@ const VideoTabs: React.FC = () => {
             </ListItemSecondaryAction>
           </ListItem>
         </List>
-      )}
+      </SwipeableViews>
     </>
   );
 };

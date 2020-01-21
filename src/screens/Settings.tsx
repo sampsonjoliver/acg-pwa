@@ -29,12 +29,12 @@ import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import SubjectIcon from '@material-ui/icons/Subject';
 import PolicyIcon from '@material-ui/icons/Policy';
 import { useRouteMatch } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { routes } from '../components/MainStackRouter';
 import { useAuth0 } from '../contexts/Auth0Provider';
 import { PlaybackSettings } from './PlaybackSettings';
 import { NotificationSettings } from './NotificationSettings';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
