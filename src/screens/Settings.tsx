@@ -28,10 +28,13 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import SubjectIcon from '@material-ui/icons/Subject';
 import PolicyIcon from '@material-ui/icons/Policy';
+import { useRouteMatch } from 'react-router';
 
+import { routes } from '../components/MainStackRouter';
 import { useAuth0 } from '../contexts/Auth0Provider';
 import { PlaybackSettings } from './PlaybackSettings';
 import { NotificationSettings } from './NotificationSettings';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -58,10 +61,9 @@ const SmallIcon = withStyles(theme => ({
 }))(AddPhotoIcon);
 
 export const Settings = () => {
-  const [isPlaybackSettingsOpen, setPlaybacksettingsOpen] = useState(false);
-  const [isNotificationSettingsOpen, setNotificationSettingsOpen] = useState(
-    false
-  );
+  const isPlaybackSettingsOpen = useRouteMatch(routes.playbackSettings);
+  const isNotificationSettingsOpen = useRouteMatch(routes.notificationSettings);
+
   const [isWifiDownloadsOnly, setWifiDownloadsOnly] = useState(false);
   const [isNotificationsEnabled, setNotificationsEnabled] = useState(false);
 
@@ -96,15 +98,9 @@ export const Settings = () => {
           {auth.user?.userId || 'Anonymous User'}
         </Typography>
 
-        <PlaybackSettings
-          open={isPlaybackSettingsOpen}
-          onClose={() => setPlaybacksettingsOpen(false)}
-        />
+        <PlaybackSettings open={!!isPlaybackSettingsOpen} />
 
-        <NotificationSettings
-          open={isNotificationSettingsOpen}
-          onClose={() => setNotificationSettingsOpen(false)}
-        />
+        <NotificationSettings open={!!isNotificationSettingsOpen} />
 
         <Box width="100%">
           <List subheader={<ListSubheader>Settings</ListSubheader>}>
@@ -127,7 +123,21 @@ export const Settings = () => {
                 />
               </ListItemSecondaryAction>
             </ListItem>
-            <ListItem button onClick={() => setNotificationSettingsOpen(true)}>
+            <ListItem
+              button
+              component={Link as any}
+              to={(location: Location) => {
+                const params = new URLSearchParams(location.search);
+                const newParams = new URLSearchParams();
+                newParams.append('screen', params.get('screen') ?? '');
+
+                return {
+                  ...location,
+                  pathname: routes.notificationSettings,
+                  search: newParams.toString(),
+                };
+              }}
+            >
               <ListItemIcon>
                 <NotificationsActive />
               </ListItemIcon>
@@ -148,7 +158,21 @@ export const Settings = () => {
                 </Box>
               </ListItemSecondaryAction>
             </ListItem>
-            <ListItem button onClick={() => setPlaybacksettingsOpen(true)}>
+            <ListItem
+              button
+              component={Link as any}
+              to={(location: Location) => {
+                const params = new URLSearchParams(location.search);
+                const newParams = new URLSearchParams();
+                newParams.append('screen', params.get('screen') ?? '');
+
+                return {
+                  ...location,
+                  pathname: routes.playbackSettings,
+                  search: newParams.toString(),
+                };
+              }}
+            >
               <ListItemIcon>
                 <TuneIcon />
               </ListItemIcon>

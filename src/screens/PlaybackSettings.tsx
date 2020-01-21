@@ -8,8 +8,6 @@ import {
   Switch,
   Dialog,
   Slide,
-  AppBar,
-  Toolbar,
   IconButton,
   Menu,
   MenuItem,
@@ -18,6 +16,7 @@ import {
 
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { AppBar } from '../components/AppBar';
 
 const playbackOptions = [
   '0.8x speed',
@@ -105,30 +104,12 @@ const Transition = React.forwardRef((props, ref) => {
 
 export const PlaybackSettings: React.FC<{
   open: boolean;
-  onClose: () => void;
-}> = ({ open, onClose }) => {
+}> = ({ open }) => {
   const [isContinuousPlayback, setContinuousPlayback] = useState(false);
 
   return (
-    <Dialog
-      fullScreen
-      open={open}
-      onClose={onClose}
-      TransitionComponent={Transition as any}
-    >
-      <AppBar style={{ position: 'relative' }}>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            onClick={onClose}
-            aria-label="close"
-          >
-            <ArrowBackIcon />
-          </IconButton>
-          <Typography variant="h6">Playback Settings</Typography>
-        </Toolbar>
-      </AppBar>
+    <Dialog fullScreen open={open} TransitionComponent={Transition as any}>
+      <AppBar title="Playback Settings" showBack />
       <Container fixed>
         <List>
           <ListItem

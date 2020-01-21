@@ -24,47 +24,50 @@ export const AppBar: React.FC<{ title: string; showBack?: boolean }> = ({
   const history = useHistory();
 
   return (
-    <Box position="fixed" top={0} width="100%" zIndex={100}>
-      <MuiAppBar position="static">
-        <Toolbar>
-          {showBack && (
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="close"
-              onClick={() => {
-                history.goBack();
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
-          )}
-          <Box flexGrow={1}>
-            <Typography variant="h6">{title}</Typography>
-          </Box>
-          {children}
-          {!auth.isAuthenticated && (
-            <Button
-              onClick={() =>
-                auth.login({
-                  redirectUri: config.auth0.clientRedirectUri,
-                })
-              }
-            >
-              Login
-            </Button>
-          )}
-          {auth.isAuthenticated && (
-            <Button
-              onClick={() =>
-                auth.logout({ returnTo: config.auth0.logoutReturnTo })
-              }
-            >
-              Logout
-            </Button>
-          )}
-        </Toolbar>
-      </MuiAppBar>
-    </Box>
+    <>
+      <Box position="fixed" top={0} width="100%" zIndex={100}>
+        <MuiAppBar position="static">
+          <Toolbar>
+            {showBack && (
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="close"
+                onClick={() => {
+                  history.goBack();
+                }}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+            )}
+            <Box flexGrow={1}>
+              <Typography variant="h6">{title}</Typography>
+            </Box>
+            {children}
+            {!auth.isAuthenticated && (
+              <Button
+                onClick={() =>
+                  auth.login({
+                    redirectUri: config.auth0.clientRedirectUri,
+                  })
+                }
+              >
+                Login
+              </Button>
+            )}
+            {auth.isAuthenticated && (
+              <Button
+                onClick={() =>
+                  auth.logout({ returnTo: config.auth0.logoutReturnTo })
+                }
+              >
+                Logout
+              </Button>
+            )}
+          </Toolbar>
+        </MuiAppBar>
+      </Box>
+      <Box height="64px" />
+    </>
   );
 };

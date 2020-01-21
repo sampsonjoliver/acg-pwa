@@ -7,7 +7,7 @@ import {
   GridListTileBar,
   Grow,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const tiles = [
   {
@@ -73,6 +73,8 @@ const tiles = [
 ];
 
 export const Dashboard = () => {
+  const location = useLocation();
+
   return (
     <Box flex="1 0 auto" padding={1}>
       <Box mb={2}>
@@ -96,7 +98,20 @@ export const Dashboard = () => {
                   key={`${index}-${index2}-${tile.img}`}
                   style={{ width: '224px', height: '224px' }}
                 >
-                  <Link to="/video?componentId=123">
+                  <Link
+                    to={location => {
+                      const params = new URLSearchParams(location.search);
+                      const newParams = new URLSearchParams();
+                      newParams.append('componentId', '123');
+                      newParams.append('screen', params.get('screen') ?? '');
+
+                      return {
+                        ...location,
+                        pathname: '/video',
+                        search: newParams.toString(),
+                      };
+                    }}
+                  >
                     <img
                       src={tile.img}
                       alt={tile.title}

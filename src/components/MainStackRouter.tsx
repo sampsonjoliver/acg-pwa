@@ -8,7 +8,7 @@ import { Dashboard } from '../screens/Dashboard';
 import { Downloads } from '../screens/Downloads';
 import { Settings } from '../screens/Settings';
 
-import { useLocation, useHistory, Route, useRouteMatch } from 'react-router';
+import { useLocation, useHistory, useRouteMatch } from 'react-router';
 import { VideoPlayer } from '../screens/VideoPlayer';
 
 export const useParams = () => {
@@ -16,9 +16,11 @@ export const useParams = () => {
 };
 
 export type NavigatorScreenStack = 'dashboard' | 'downloads' | 'settings';
-export type Routes = keyof typeof routeMap;
-const routeMap = {
+export type Routes = keyof typeof routes;
+export const routes = {
   video: '/video',
+  playbackSettings: '/playbackSettings',
+  notificationSettings: '/notificationSettings',
 };
 
 export const useMainStackNavigator = () => {

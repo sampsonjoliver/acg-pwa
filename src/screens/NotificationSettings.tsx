@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Typography,
   List,
   ListItem,
   ListItemText,
@@ -8,9 +7,6 @@ import {
   Switch,
   Dialog,
   Slide,
-  AppBar,
-  Toolbar,
-  IconButton,
   ListSubheader,
   Checkbox,
   Divider,
@@ -18,6 +14,7 @@ import {
 } from '@material-ui/core';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { AppBar } from '../components/AppBar';
 
 const Transition = React.forwardRef((props, ref) => {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -77,33 +74,15 @@ const notificationSettings = [
 
 export const NotificationSettings: React.FC<{
   open: boolean;
-  onClose: () => void;
-}> = ({ open, onClose }) => {
+}> = ({ open }) => {
   const [isNotificationsEnabled, setNotificationsEnabled] = useState(false);
   const [notificationSettingsValues, setNotificationSettings] = useState<{
     [key: string]: boolean;
   }>({});
 
   return (
-    <Dialog
-      fullScreen
-      open={open}
-      onClose={onClose}
-      TransitionComponent={Transition as any}
-    >
-      <AppBar style={{ position: 'relative' }}>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            onClick={onClose}
-            aria-label="close"
-          >
-            <ArrowBackIcon />
-          </IconButton>
-          <Typography variant="h6">Notification Settings</Typography>
-        </Toolbar>
-      </AppBar>
+    <Dialog fullScreen open={open} TransitionComponent={Transition as any}>
+      <AppBar title="Notification Settings" showBack />
       <Container fixed>
         <List>
           <ListItem
