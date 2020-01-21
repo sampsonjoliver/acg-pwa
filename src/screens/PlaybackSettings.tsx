@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Typography,
   List,
   ListItem,
   ListItemText,
@@ -8,14 +7,12 @@ import {
   Switch,
   Dialog,
   Slide,
-  IconButton,
   Menu,
   MenuItem,
   Container,
 } from '@material-ui/core';
 
 import ChevronRight from '@material-ui/icons/ChevronRight';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { AppBar } from '../components/AppBar';
 
 const playbackOptions = [

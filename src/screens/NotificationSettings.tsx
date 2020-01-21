@@ -13,7 +13,6 @@ import {
   Container,
 } from '@material-ui/core';
 
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { AppBar } from '../components/AppBar';
 
 const Transition = React.forwardRef((props, ref) => {

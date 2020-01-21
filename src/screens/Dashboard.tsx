@@ -7,7 +7,7 @@ import {
   GridListTileBar,
   Grow,
 } from '@material-ui/core';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const tiles = [
   {
@@ -73,8 +73,6 @@ const tiles = [
 ];
 
 export const Dashboard = () => {
-  const location = useLocation();
-
   return (
     <Box flex="1 0 auto" padding={1}>
       <Box mb={2}>
