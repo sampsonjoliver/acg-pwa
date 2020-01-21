@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import {
-  Typography,
   Dialog,
   Slide,
-  Toolbar,
-  IconButton,
   Box,
   List,
   Tabs,
@@ -16,42 +13,21 @@ import {
   ListItemSecondaryAction,
 } from '@material-ui/core';
 import ReactPlayer from 'react-player';
-import { useHistory } from 'react-router';
 
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ChevronRight from '@material-ui/icons/ChevronRight';
-import { AppBar } from '../components/AppBar';
 import { Screen } from '../components/Screen';
+import { AppBar } from '../components/AppBar';
 
 const Transition = React.forwardRef((props, ref) => {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const VideoPlayer: React.FC = () => {
-  const history = useHistory();
-  const [hasClickedBack, setHasClickedBack] = useState(false);
-
+export const VideoPlayer: React.FC<{ open: boolean }> = ({ open }) => {
   return (
-    <Dialog
-      fullScreen
-      open={!hasClickedBack}
-      TransitionComponent={Transition as any}
-    >
-      <Screen height="100vh" display="flex" flexDirection="column">
-        <AppBar title="Video Player">
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="close"
-            onClick={() => {
-              setHasClickedBack(true);
-              history.goBack();
-            }}
-          >
-            <ArrowBackIcon />
-          </IconButton>
-        </AppBar>
+    <Dialog fullScreen open={open} TransitionComponent={Transition as any}>
+      <Screen>
+        <AppBar title="Video Player" showBack />
 
         <Box
           pt={`${calculateAspectRatio(1280, 720)}%`}

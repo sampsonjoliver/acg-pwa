@@ -7,7 +7,7 @@ import './App.css';
 
 import { Auth0Provider } from './contexts/Auth0Provider';
 import { ConfigProvider } from './contexts/ConfigProvider';
-import { Router } from './components/Router';
+import { MainStackRouter } from './components/MainStackRouter';
 import { ServiceWorkerProvider } from './contexts/ServiceWorker';
 import { ServiceWorkerUpdateToast } from './components/ServiceWorkerUpdateToast';
 
@@ -32,7 +32,7 @@ const App: React.FC = () => {
         <ServiceWorkerProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Router />
+            <MainStackRouter />
             <ServiceWorkerUpdateToast />
           </ThemeProvider>
         </ServiceWorkerProvider>

@@ -5,32 +5,28 @@ import {
   BottomNavigation,
   BottomNavigationAction,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { useMainStackNavigator } from './MainStackRouter';
 
-export const BottomNav: React.FC<{ index: number }> = ({ index }) => {
-  const [value, setValue] = React.useState(index);
+export const BottomNav: React.FC = () => {
+  const navigator = useMainStackNavigator();
+  const index = navigator.index;
 
   return (
     <Box position="fixed" bottom={0} width="100%">
       <Paper elevation={8}>
-        <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          showLabels
-        >
-          <BottomNavigationAction component={Link} to="/" label="Dashboard" />
+        <BottomNavigation value={index} showLabels>
+          <BottomNavigationAction
+            onClick={() => navigator.navigateTo('dashboard')}
+            label="Dashboard"
+          />
 
           <BottomNavigationAction
-            component={Link}
-            to="/downloads"
+            onClick={() => navigator.navigateTo('downloads')}
             label="Downloads"
           />
 
           <BottomNavigationAction
-            component={Link}
-            to="/settings"
+            onClick={() => navigator.navigateTo('settings')}
             label="Settings"
           />
         </BottomNavigation>
