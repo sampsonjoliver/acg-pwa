@@ -73,7 +73,6 @@ const tiles = [
 ];
 
 export const Dashboard = () => {
-  // const router = useLo
   return (
     <Box flex="1 0 auto" padding={1}>
       <Box mb={2}>
