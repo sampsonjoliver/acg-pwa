@@ -103,7 +103,9 @@ export const Settings = () => {
         <NotificationSettings open={!!isNotificationSettingsOpen} />
 
         <Box width="100%">
-          <List subheader={<ListSubheader>Settings</ListSubheader>}>
+          <List
+            subheader={<ListSubheader disableSticky>Settings</ListSubheader>}
+          >
             <ListItem
               button
               onClick={() => setWifiDownloadsOnly(!isWifiDownloadsOnly)}
