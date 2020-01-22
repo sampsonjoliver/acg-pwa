@@ -192,7 +192,7 @@ export const Settings = () => {
               <ListItemIcon>
                 <FeedbackIcon />
               </ListItemIcon>
-              <ListItemText id="switch-list-label-wifi">
+              <ListItemText id="switch-list-label-feedback">
                 Send Feedback
               </ListItemText>
               <ListItemSecondaryAction>
@@ -203,7 +203,7 @@ export const Settings = () => {
               <ListItemIcon>
                 <ContactSupportIcon />
               </ListItemIcon>
-              <ListItemText id="switch-list-label-wifi">
+              <ListItemText id="switch-list-label-support">
                 Help and Support
               </ListItemText>
               <ListItemSecondaryAction>
@@ -215,7 +215,7 @@ export const Settings = () => {
               <ListItemIcon>
                 <SubjectIcon />
               </ListItemIcon>
-              <ListItemText id="switch-list-label-wifi">
+              <ListItemText id="switch-list-label-terms">
                 Terms of Use
               </ListItemText>
               <ListItemSecondaryAction>
@@ -226,7 +226,7 @@ export const Settings = () => {
               <ListItemIcon>
                 <PolicyIcon />
               </ListItemIcon>
-              <ListItemText id="switch-list-label-wifi">
+              <ListItemText id="switch-list-label-policy">
                 Privacy Policy
               </ListItemText>
               <ListItemSecondaryAction>
@@ -238,7 +238,7 @@ export const Settings = () => {
               <ListItemIcon>
                 <LockIcon />
               </ListItemIcon>
-              <ListItemText id="switch-list-label-wifi">Logout</ListItemText>
+              <ListItemText id="switch-list-label-logout">Logout</ListItemText>
               <ListItemSecondaryAction>
                 <ChevronRight />
               </ListItemSecondaryAction>
