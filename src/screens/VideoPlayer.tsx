@@ -12,7 +12,7 @@ export const VideoPlayer: React.FC<{ open: boolean }> = ({ open }) => {
     <Dialog fullScreen open={open} TransitionComponent={SlideTransition}>
       <Screen>
         <AppBar title="Video Player" showBack />
-        <ScreenContent offsetAppbar>
+        <ScreenContent offsetAppbar display="contents">
           <Box
             pt={`${calculateAspectRatio(1280, 720)}%`}
             position="relative"
