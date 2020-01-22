@@ -11,6 +11,7 @@ import {
   Checkbox,
   Divider,
   Container,
+  Box,
 } from '@material-ui/core';
 
 import { AppBar } from '../components/AppBar';
@@ -82,65 +83,69 @@ export const NotificationSettings: React.FC<{
   return (
     <Dialog fullScreen open={open} TransitionComponent={Transition as any}>
       <AppBar title="Notification Settings" showBack />
-      <Container fixed>
-        <List>
-          <ListItem
-            button
-            onClick={() => setNotificationsEnabled(!isNotificationsEnabled)}
-          >
-            <ListItemText
-              primary="Turn on Notifications?"
-              secondary="Receive notifications when new content gets added"
-            ></ListItemText>
-            <ListItemSecondaryAction>
-              <Switch
-                edge="end"
-                checked={isNotificationsEnabled}
-                onChange={(event, checked) => setNotificationsEnabled(checked)}
-              />
-            </ListItemSecondaryAction>
-          </ListItem>
+      <Box position="absolute" width="100vw" mt="64px">
+        <Container fixed>
+          <List>
+            <ListItem
+              button
+              onClick={() => setNotificationsEnabled(!isNotificationsEnabled)}
+            >
+              <ListItemText
+                primary="Turn on Notifications?"
+                secondary="Receive notifications when new content gets added"
+              ></ListItemText>
+              <ListItemSecondaryAction>
+                <Switch
+                  edge="end"
+                  checked={isNotificationsEnabled}
+                  onChange={(event, checked) =>
+                    setNotificationsEnabled(checked)
+                  }
+                />
+              </ListItemSecondaryAction>
+            </ListItem>
 
-          <Divider />
-          <Divider />
+            <Divider />
+            <Divider />
 
-          {notificationSettings.map((it, index) => {
-            if (it.type === 'subheader') {
-              return <ListSubheader>{it.text}</ListSubheader>;
-            }
-            return (
-              <ListItem
-                disabled={!isNotificationsEnabled}
-                key={index}
-                button
-                onClick={() => {
-                  setNotificationSettings({
-                    ...notificationSettingsValues,
-                    ...{
-                      [it.text]: !notificationSettingsValues[it.text],
-                    },
-                  });
-                }}
-              >
-                <ListItemText primary={it.text} />
-                <ListItemSecondaryAction>
-                  <Checkbox
-                    disabled={!isNotificationsEnabled}
-                    edge="end"
-                    onChange={(event, checked) => {
-                      setNotificationSettings({
-                        ...notificationSettingsValues,
-                        ...{ [it.text]: checked },
-                      });
-                    }}
-                    checked={!!notificationSettingsValues[it.text]}
-                  />
-                </ListItemSecondaryAction>
-              </ListItem>
-            );
-          })}
-        </List>
-      </Container>
+            {notificationSettings.map((it, index) => {
+              if (it.type === 'subheader') {
+                return <ListSubheader disableSticky>{it.text}</ListSubheader>;
+              }
+              return (
+                <ListItem
+                  disabled={!isNotificationsEnabled}
+                  key={index}
+                  button
+                  onClick={() => {
+                    setNotificationSettings({
+                      ...notificationSettingsValues,
+                      ...{
+                        [it.text]: !notificationSettingsValues[it.text],
+                      },
+                    });
+                  }}
+                >
+                  <ListItemText primary={it.text} />
+                  <ListItemSecondaryAction>
+                    <Checkbox
+                      disabled={!isNotificationsEnabled}
+                      edge="end"
+                      onChange={(event, checked) => {
+                        setNotificationSettings({
+                          ...notificationSettingsValues,
+                          ...{ [it.text]: checked },
+                        });
+                      }}
+                      checked={!!notificationSettingsValues[it.text]}
+                    />
+                  </ListItemSecondaryAction>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Container>
+      </Box>
     </Dialog>
   );
 };

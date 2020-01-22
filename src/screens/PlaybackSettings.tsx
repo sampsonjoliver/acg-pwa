@@ -10,6 +10,7 @@ import {
   Menu,
   MenuItem,
   Container,
+  Box,
 } from '@material-ui/core';
 
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -107,35 +108,37 @@ export const PlaybackSettings: React.FC<{
   return (
     <Dialog fullScreen open={open} TransitionComponent={Transition as any}>
       <AppBar title="Playback Settings" showBack />
-      <Container fixed>
-        <List>
-          <ListItem
-            button
-            onClick={() => setContinuousPlayback(!isContinuousPlayback)}
-          >
-            <ListItemText
-              primary="Continuous Play"
-              secondary={`When a video ends, the next video will ${
-                isContinuousPlayback ? 'not ' : ''
-              }automatically start`}
-            ></ListItemText>
-            <ListItemSecondaryAction>
-              <Switch
-                edge="end"
-                checked={isContinuousPlayback}
-                onChange={(event, checked) => setContinuousPlayback(checked)}
-              />
-            </ListItemSecondaryAction>
-          </ListItem>
+      <Box position="absolute" width="100vw" mt="64px">
+        <Container fixed>
+          <List>
+            <ListItem
+              button
+              onClick={() => setContinuousPlayback(!isContinuousPlayback)}
+            >
+              <ListItemText
+                primary="Continuous Play"
+                secondary={`When a video ends, the next video will ${
+                  isContinuousPlayback ? 'not ' : ''
+                }automatically start`}
+              ></ListItemText>
+              <ListItemSecondaryAction>
+                <Switch
+                  edge="end"
+                  checked={isContinuousPlayback}
+                  onChange={(event, checked) => setContinuousPlayback(checked)}
+                />
+              </ListItemSecondaryAction>
+            </ListItem>
 
-          <MultiSelectMenuItem
-            options={playbackOptions}
-            text="Playback Speed"
-          />
-          <MultiSelectMenuItem options={skipOptions} text="Skip Back" />
-          <MultiSelectMenuItem options={skipOptions} text="Skip Forward" />
-        </List>
-      </Container>
+            <MultiSelectMenuItem
+              options={playbackOptions}
+              text="Playback Speed"
+            />
+            <MultiSelectMenuItem options={skipOptions} text="Skip Back" />
+            <MultiSelectMenuItem options={skipOptions} text="Skip Forward" />
+          </List>
+        </Container>
+      </Box>
     </Dialog>
   );
 };
