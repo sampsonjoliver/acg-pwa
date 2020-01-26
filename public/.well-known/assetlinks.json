@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.sampsonjoliver.acgpwa",
+      "sha256_cert_fingerprints": [
+        "01:86:1C:0E:F7:A6:19:ED:72:FD:69:55:89:AA:74:3E:17:78:E3:C7:78:AE:E8:15:BB:B9:A2:B7:E5:65:35:4F"
+      ]
+    }
+  }
+]

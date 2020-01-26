@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">A Cloud Guru</string>
+    <string name="app_url">https://acg-pwa.sampsonjoliver.now.sh/</string>
+    <string name="asset_statements">
+        [{
+            \"relation\": [\"delegate_permission/common.handle_all_urls\"],
+            \"target\": {
+                \"namespace\": \"web\",
+                \"site\": \"https://acg-pwa.sampsonjoliver.now.sh\"}
+        }]
+    </string>
+    <string name="app_host">acg-pwa.sampsonjoliver.now.sh/</string>
+</resources>
