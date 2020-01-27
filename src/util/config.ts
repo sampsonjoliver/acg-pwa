@@ -12,5 +12,8 @@ export const makeConfig = () => {
         window.location.host
       }/${process.env.REACT_APP_AUTH0_LOGOUT_RETURN_TO!}`,
     },
+    graphql: {
+      url: `${process.env.REACT_APP_GRAPHQL_URL}`,
+    },
   };
 };

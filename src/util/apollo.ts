@@ -1,10 +1,21 @@
-import ApolloClient from 'apollo-boost';
+import ApolloClient, {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from 'apollo-boost';
 import { makeTokenRepository } from './auth/makeTokenRepository';
+import { fragmentTypes } from '../models/fragmentTypes';
+import { makeConfig } from './config';
 
 const tokenRepository = makeTokenRepository();
 
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData: fragmentTypes,
+});
+
+const { graphql } = makeConfig();
+
 const apolloClient = new ApolloClient({
-  uri: 'https://prod-api.acloud.guru/bff/graphql',
+  uri: graphql.url,
   request: operation => {
     operation.setContext({
       headers: {
@@ -12,6 +23,7 @@ const apolloClient = new ApolloClient({
       },
     });
   },
+  cache: new InMemoryCache({ fragmentMatcher }),
 });
 
 export { apolloClient };
