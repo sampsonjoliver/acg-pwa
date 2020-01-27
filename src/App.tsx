@@ -3,11 +3,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
+import { CloudinaryContext } from 'cloudinary-react';
 
 import './App.css';
 
 import { Auth0Provider } from './contexts/Auth0Provider';
-import { ConfigProvider } from './contexts/ConfigProvider';
+import { ConfigProvider, useConfig } from './contexts/ConfigProvider';
 import { MainStackRouter } from './components/MainStackRouter';
 import { ServiceWorkerProvider } from './contexts/ServiceWorker';
 import { ServiceWorkerUpdateToast } from './components/ServiceWorkerUpdateToast';
@@ -28,15 +29,18 @@ const theme = createMuiTheme({
 });
 
 const App: React.FC = () => {
+  const config = useConfig();
   return (
     <Auth0Provider onRedirectCallback={() => null}>
       <ApolloProvider client={apolloClient}>
         <BrowserRouter>
           <ServiceWorkerProvider>
             <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <MainStackRouter />
-              <ServiceWorkerUpdateToast />
+              <CloudinaryContext cloudName={config.cloudinary.cloudName}>
+                <CssBaseline />
+                <MainStackRouter />
+                <ServiceWorkerUpdateToast />
+              </CloudinaryContext>
             </ThemeProvider>
           </ServiceWorkerProvider>
         </BrowserRouter>

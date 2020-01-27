@@ -15,5 +15,9 @@ export const makeConfig = () => {
     graphql: {
       url: `${process.env.REACT_APP_GRAPHQL_URL}`,
     },
+    cloudinary: {
+      url: `${process.env.REACT_APP_CLOUDINARY_URL}`,
+      cloudName: `${process.env.REACT_APP_CLOUDINARY_NAME}`,
+    },
   };
 };
