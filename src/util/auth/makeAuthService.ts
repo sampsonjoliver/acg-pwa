@@ -43,7 +43,7 @@ export type AuthService = ReturnType<typeof makeAuthService>;
 export const makeAuthService = ({
   AUTH0_PRIMARY_DOMAIN = 'acloudguru.auth0.com',
   AUTH0_SECONDARY_DOMAIN = 'auth.acloud.guru',
-  AUTH0_API_AUDIENCE = 'https://acloudguru-dev-samo.au.auth0.com/api/v2/',
+  AUTH0_API_AUDIENCE = 'https://acloudguru.auth0.com/api/v2/',
   AUTH0_CLIENT_ID,
   AUTH0_SCOPE = 'openid profile offline_access',
   DEFAULT_DOMAIN,
