@@ -8,8 +8,10 @@ import { Dashboard } from '../screens/Dashboard';
 import { Downloads } from '../screens/Downloads';
 import { Settings } from '../screens/Settings';
 
-import { useLocation, useHistory, useRouteMatch } from 'react-router';
+import { useLocation, useHistory, useRouteMatch, Redirect } from 'react-router';
 import { VideoPlayer } from '../screens/VideoPlayer';
+import { useAuth0 } from '../contexts/Auth0Provider';
+import { Login } from '../screens/Login';
 
 export const useParams = () => {
   return new URLSearchParams(useLocation().search);
@@ -56,6 +58,24 @@ export const useMainStackNavigator = () => {
 export const MainStackRouter: React.FC = () => {
   const match = useMainStackNavigator();
   const videoMatch = useRouteMatch('/video');
+  const loginMatch = useRouteMatch('/login');
+  const auth = useAuth0();
+
+  if (auth.loading) {
+    return null;
+  }
+
+  if (!auth.isAuthenticated && !loginMatch) {
+    return <Redirect to={'/login'} />;
+  }
+
+  if (auth.isAuthenticated && loginMatch) {
+    return <Redirect to="/" />;
+  }
+
+  if (loginMatch) {
+    return <Login />;
+  }
 
   return (
     <Screen>
