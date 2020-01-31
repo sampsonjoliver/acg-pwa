@@ -7,6 +7,7 @@ import { BottomNav } from './BottomNav';
 import { Dashboard } from '../screens/Dashboard';
 import { Downloads } from '../screens/Downloads';
 import { Settings } from '../screens/Settings';
+import { CourseScreen } from '../screens/Course';
 
 import { useLocation, useHistory, useRouteMatch, Redirect } from 'react-router';
 import { VideoPlayer } from '../screens/VideoPlayer';
@@ -59,6 +60,7 @@ export const MainStackRouter: React.FC = () => {
   const match = useMainStackNavigator();
   const videoMatch = useRouteMatch('/video');
   const loginMatch = useRouteMatch('/login');
+  const courseMatch = useRouteMatch<{ id: string }>('/course/:id');
   const auth = useAuth0();
 
   if (auth.loading) {
@@ -102,6 +104,7 @@ export const MainStackRouter: React.FC = () => {
       <BottomNav />
 
       <VideoPlayer open={!!videoMatch} />
+      {courseMatch && <CourseScreen courseId={courseMatch.params.id} />}
     </Screen>
   );
 };
