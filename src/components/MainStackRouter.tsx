@@ -13,6 +13,7 @@ import { useLocation, useHistory, useRouteMatch, Redirect } from 'react-router';
 import { VideoPlayer } from '../screens/VideoPlayer';
 import { useAuth0 } from '../contexts/Auth0Provider';
 import { Login } from '../screens/Login';
+import { useConfig } from '../contexts/ConfigProvider';
 
 export const useParams = () => {
   return new URLSearchParams(useLocation().search);
@@ -57,9 +58,15 @@ export const useMainStackNavigator = () => {
 };
 
 export const MainStackRouter: React.FC = () => {
+  const config = useConfig();
   const match = useMainStackNavigator();
   const videoMatch = useRouteMatch('/video');
   const loginMatch = useRouteMatch('/login');
+  const callBackUrl = config.auth0.clientRedirectUri.replace(
+    window.location.origin,
+    ''
+  );
+  const loginCallbackMatch = useRouteMatch(callBackUrl);
   const courseMatch = useRouteMatch<{ id: string }>('/course/:id');
   const auth = useAuth0();
 
@@ -71,7 +78,7 @@ export const MainStackRouter: React.FC = () => {
     return <Redirect to={'/login'} />;
   }
 
-  if (auth.isAuthenticated && loginMatch) {
+  if (auth.isAuthenticated && (loginMatch || loginCallbackMatch)) {
     return <Redirect to="/" />;
   }
 
