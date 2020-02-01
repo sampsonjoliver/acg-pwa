@@ -56,6 +56,7 @@ export type CourseOverview = {
   lectureCount: number;
   hasPracticeExams: boolean;
   previewVideoUrl: string;
+  backgroundPosterUrl: string;
 
   completed: boolean;
   completedPercent: number;

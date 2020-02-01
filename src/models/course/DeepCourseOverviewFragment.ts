@@ -13,6 +13,7 @@ export const DeepCourseOverviewFragment = gql`
     lectureCount
     hasPracticeExams
     previewVideoUrl
+    backgroundPosterUrl
 
     completed
 
