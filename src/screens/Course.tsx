@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { useHistory } from 'react-router';
+import { Cloudinary } from 'cloudinary-core';
 
 import { Screen } from '../components/Screen';
 import { useCourse } from '../hooks/useCourse';
@@ -34,6 +35,8 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: 'cover',
   },
 }));
+
+const cloudinaryCore = new Cloudinary({ cloud_name: 'acloud-guru' });
 
 const useCollapsingAppBar = () => {
   const [scrollX, setScrollX] = useState({
@@ -76,6 +79,18 @@ export const CourseScreen: React.FC<Props> = props => {
   const TheBox = Box as any;
 
   const courseData = course.data?.courseOverview;
+  const backgroundBannerUrl = cloudinaryCore.url(
+    courseData?.backgroundPosterUrl ?? '',
+    {
+      quality: 'auto',
+      fetchFormat: 'auto',
+      type: 'fetch',
+      crop: 'scale',
+      width: 800,
+      responsive_use_breakpoints: true,
+      responsive: true,
+    }
+  );
 
   return (
     <Dialog fullScreen open={props.open} TransitionComponent={SlideTransition}>
@@ -88,7 +103,7 @@ export const CourseScreen: React.FC<Props> = props => {
           <div
             className={styles.appBarBanner}
             style={{
-              backgroundImage: `url(${courseData?.backgroundPosterUrl ?? ''})`,
+              backgroundImage: `url(${backgroundBannerUrl})`,
               backgroundPositionY: `${collapse.backgroundScrollPercent * 100}%`,
               opacity: Math.min(0.8, collapse.collapsedPercent),
             }}
