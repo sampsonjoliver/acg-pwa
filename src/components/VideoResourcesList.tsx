@@ -17,6 +17,8 @@ export const VideoResourcesList: React.FC = () => {
           <Avatar>1</Avatar>
         </ListItemAvatar>
         <ListItemText
+          primaryTypographyProps={{ noWrap: true, component: 'p' }}
+          secondaryTypographyProps={{ noWrap: true }}
           primary="AWS - Set up a new account"
           secondary="https://aws.amazon.com"
         />
@@ -29,6 +31,8 @@ export const VideoResourcesList: React.FC = () => {
           <Avatar>2</Avatar>
         </ListItemAvatar>
         <ListItemText
+          primaryTypographyProps={{ noWrap: true, component: 'p' }}
+          secondaryTypographyProps={{ noWrap: true }}
           primary="Creating a billing alert"
           secondary="https://aws.amazon.com/AmazonCloudWatch/latest"
         />
@@ -41,6 +45,8 @@ export const VideoResourcesList: React.FC = () => {
           <Avatar>3</Avatar>
         </ListItemAvatar>
         <ListItemText
+          primaryTypographyProps={{ noWrap: true, component: 'p' }}
+          secondaryTypographyProps={{ noWrap: true }}
           primary="Creating a free tier billing alert"
           secondary="https://aws.amazon.com/about-aws/whats-new/2017/12"
         />
