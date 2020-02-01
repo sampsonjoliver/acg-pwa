@@ -46,9 +46,13 @@ const SuggestedCoursesRow: React.FC = () => {
       </Typography>
       <GridList style={{ flexWrap: 'nowrap' }}>
         {courses.map((course, index) => (
-          <Grow in={true} style={{ transformOrigin: '0 0 0' }} timeout={650}>
+          <Grow
+            in={true}
+            style={{ transformOrigin: '0 0 0' }}
+            timeout={650}
+            key={index}
+          >
             <GridListTile
-              key={index}
               style={{
                 width: '224px',
                 height: '224px',
@@ -104,9 +108,13 @@ const UserCoursesRow: React.FC = () => {
       <GridList style={{ flexWrap: 'nowrap' }}>
         {courses.loading && 'Loading'}
         {courses.data?.userAccessibleCourses.map((course, index) => (
-          <Grow in={true} style={{ transformOrigin: '0 0 0' }} timeout={650}>
+          <Grow
+            in={true}
+            style={{ transformOrigin: '0 0 0' }}
+            timeout={650}
+            key={index}
+          >
             <GridListTile
-              key={index}
               style={{
                 width: '224px',
                 height: '224px',
