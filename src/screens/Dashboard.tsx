@@ -1,19 +1,11 @@
 import React from 'react';
-import {
-  Box,
-  Typography,
-  GridList,
-  GridListTile,
-  GridListTileBar,
-  Grow,
-} from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import { Image } from 'cloudinary-react';
+import { Box, Typography, GridList, Grow } from '@material-ui/core';
 
 import { useUserCourses } from '../hooks/useUserCourses';
 import { useCourse } from '../hooks/useCourse';
 import { notUndefined } from '../util/notUndefined';
 import { notNull } from '../util/notNull';
+import { CourseTile } from '../components/CourseTile';
 
 const SuggestedCoursesRow: React.FC = () => {
   const introCloudComputing = useCourse('intro-cloud-computing');
@@ -52,40 +44,7 @@ const SuggestedCoursesRow: React.FC = () => {
             timeout={650}
             key={index}
           >
-            <GridListTile
-              style={{
-                width: '224px',
-                height: '224px',
-              }}
-            >
-              <Link
-                to={location => {
-                  const params = new URLSearchParams(location.search);
-                  const newParams = new URLSearchParams();
-                  newParams.append('screen', params.get('screen') ?? '');
-
-                  return {
-                    ...location,
-                    pathname: `/course/${course.url}`,
-                    search: newParams.toString(),
-                  };
-                }}
-              >
-                <Image
-                  style={{ height: '100%' }}
-                  width="auto"
-                  dpr="auto"
-                  crop="scale"
-                  type="fetch"
-                  publicId={course.artworkUrl}
-                  responsive
-                  responsiveUseBreakpoints="true"
-                  alt={course.title}
-                  crossOrigin="anonymous"
-                />
-                <GridListTileBar title={course.title} />
-              </Link>
-            </GridListTile>
+            {CourseTile({ course })}
           </Grow>
         ))}
       </GridList>
@@ -114,40 +73,7 @@ const UserCoursesRow: React.FC = () => {
             timeout={650}
             key={index}
           >
-            <GridListTile
-              style={{
-                width: '224px',
-                height: '224px',
-              }}
-            >
-              <Link
-                to={location => {
-                  const params = new URLSearchParams(location.search);
-                  const newParams = new URLSearchParams();
-                  newParams.append('screen', params.get('screen') ?? '');
-
-                  return {
-                    ...location,
-                    pathname: `/course/${course.url}`,
-                    search: newParams.toString(),
-                  };
-                }}
-              >
-                <Image
-                  style={{ height: '100%' }}
-                  width="auto"
-                  dpr="auto"
-                  crop="scale"
-                  type="fetch"
-                  publicId={course.artworkUrl}
-                  responsive
-                  responsiveUseBreakpoints="true"
-                  alt={course.title}
-                  crossOrigin="anonymous"
-                />
-                <GridListTileBar title={course.title} />
-              </Link>
-            </GridListTile>
+            {CourseTile({ course })}
           </Grow>
         ))}
       </GridList>

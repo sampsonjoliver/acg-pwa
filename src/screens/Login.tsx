@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Typography, Button } from '@material-ui/core';
+import { Box, Typography, Button } from '@material-ui/core';
 import { useAuth0 } from '../contexts/Auth0Provider';
 import { useConfig } from '../contexts/ConfigProvider';
 
