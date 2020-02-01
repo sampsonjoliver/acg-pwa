@@ -30,6 +30,9 @@ export const Auth0Provider: React.FC<Auth0ProviderProps> = ({
     AUTH0_SECONDARY_DOMAIN: config.auth0.clientDomain,
     AUTH0_CLIENT_ID: config.auth0.clientId,
     DEFAULT_DOMAIN: 'primary',
+    REDIRECT_URI: `${window.location.protocol}//${
+      window.location.host
+    }/${process.env.REACT_APP_AUTH0_CLIENT_REDIRECT_URI!}`,
   });
   useEffect(() => {
     const initAuth0 = async () => {

@@ -36,6 +36,7 @@ type AuthServiceProps = {
   AUTH0_CLIENT_ID: string;
   AUTH0_SCOPE?: string;
   DEFAULT_DOMAIN: DEFAULT_DOMAIN;
+  REDIRECT_URI: string;
 };
 
 export type AuthService = ReturnType<typeof makeAuthService>;
@@ -47,12 +48,14 @@ export const makeAuthService = ({
   AUTH0_CLIENT_ID,
   AUTH0_SCOPE = 'openid profile offline_access',
   DEFAULT_DOMAIN,
+  REDIRECT_URI,
 }: AuthServiceProps) => {
   const auth0PrimaryDomainClient = makeAuthClient({
     domain: AUTH0_PRIMARY_DOMAIN,
     clientId: AUTH0_CLIENT_ID,
     scope: AUTH0_SCOPE,
     audience: AUTH0_API_AUDIENCE,
+    redirectUri: REDIRECT_URI,
   });
 
   const auth0SecondaryDomainClient = makeAuthClient({
@@ -60,6 +63,7 @@ export const makeAuthService = ({
     clientId: AUTH0_CLIENT_ID,
     scope: AUTH0_SCOPE,
     audience: AUTH0_API_AUDIENCE,
+    redirectUri: REDIRECT_URI,
   });
 
   const decodeToken = makeDecodeToken();
