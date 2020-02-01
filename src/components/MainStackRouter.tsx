@@ -116,7 +116,10 @@ export const MainStackRouter: React.FC = () => {
       <BottomNav />
 
       <VideoPlayer open={!!videoMatch} />
-      {courseMatch && <CourseScreen courseId={courseMatch.params.id} />}
+      <CourseScreen
+        open={!!courseMatch}
+        courseId={courseMatch?.params.id ?? ''}
+      />
     </Screen>
   );
 };
