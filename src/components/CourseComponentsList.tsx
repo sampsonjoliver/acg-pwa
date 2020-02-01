@@ -1,8 +1,9 @@
 import React from 'react';
-import { List, ListSubheader, makeStyles } from '@material-ui/core';
+import { ListSubheader, makeStyles } from '@material-ui/core';
 
 import { VideoLessonRow } from './VideoLessonRow';
 import { CourseOverview } from '../models/course/type';
+import ReactList from 'react-list';
 
 const useStyles = makeStyles(theme => ({
   listSection: {
@@ -15,6 +16,7 @@ export const CourseComponentsList: React.FC<{
   course: CourseOverview;
 }> = ({ course }) => {
   const styles = useStyles();
+
   const courseComponents = course.sections.flatMap(section => {
     return [
       { type: 'section' as 'section', data: section },
@@ -24,12 +26,18 @@ export const CourseComponentsList: React.FC<{
       })),
     ];
   });
+
   return (
-    <List>
-      {courseComponents.map((item, index) => {
+    <ReactList
+      itemRenderer={(index, key) => {
+        const item = courseComponents[index];
         if (item.type === 'section') {
           return (
-            <ListSubheader key={index} className={styles.listSection}>
+            <ListSubheader
+              disableSticky
+              key={key}
+              className={styles.listSection}
+            >
               {item.data.title}
             </ListSubheader>
           );
@@ -37,14 +45,21 @@ export const CourseComponentsList: React.FC<{
         if (item.type === 'video' && item.data.content.type === 'video') {
           return (
             <VideoLessonRow
-              key={index}
+              key={key}
               component={item.data}
               content={item.data.content}
             />
           );
         }
-        return null;
-      })}
-    </List>
+        return <></>;
+      }}
+      length={courseComponents.length}
+      type={'variable'}
+      itemSizeGetter={index =>
+        courseComponents[index].type === 'section' ? 48 : 72
+      }
+      useTranslate3d
+      pageSize={2}
+    />
   );
 };

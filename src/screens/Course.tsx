@@ -63,7 +63,7 @@ const useCollapsingAppBar = () => {
     headerHeight,
     backgroundScrollPercent,
     collapsedPercent,
-    ref: scrollRef,
+    scrollRef,
   };
 };
 
@@ -111,10 +111,11 @@ export const CourseScreen: React.FC<Props> = props => {
         </AppBar>
 
         <TheBox
+          ref={collapse.scrollRef}
           style={{
+            height: '100%',
             overflowY: 'scroll',
           }}
-          ref={collapse.ref}
         >
           {courseData && <CourseComponentsList course={courseData} />}
         </TheBox>

@@ -14,7 +14,7 @@ import { VideoThumbnail } from './VideoThumbnail';
 export const VideoLessonRow: React.FC<{
   component: Component;
   content: VideoComponentContent;
-}> = ({ children, component, content }) => {
+}> = ({ component, content }) => {
   const durationText = `${content.duration}s`;
   const sizeText = formatFileSize(
     content.videosources ? content.videosources[0].filesize : 0
