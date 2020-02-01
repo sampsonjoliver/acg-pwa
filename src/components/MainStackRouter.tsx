@@ -32,7 +32,12 @@ export const useMainStackNavigator = () => {
   const location = useLocation();
   const history = useHistory();
 
-  const activeScreenStack = params.get('screen') ?? 'dashboard';
+  if (!params.has('screen')) {
+    params.append('screen', 'dashboard');
+    history.replace({ ...location, search: params.toString() });
+  }
+
+  const activeScreenStack = params.get('screen')!;
 
   const screens: NavigatorScreenStack[] = [
     'dashboard',
