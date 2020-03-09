@@ -1,4 +1,6 @@
 declare module 'cloudinary-react' {
+  import { Transformation } from 'cloudinary-core';
+
   type ImageManipulation = {
     cloudName?: string;
     height?: string | number;
@@ -18,7 +20,7 @@ declare module 'cloudinary-react' {
     dpr?: 'auto';
     responsiveUseBreakpoints?: 'true' | 'false';
     type?: string;
-  };
+  } & Transformation.Options;
   export const CloudinaryContext: React.ElementType<{ cloudName: string }>;
   export const Image: React.ElementType<{
     publicId: string;

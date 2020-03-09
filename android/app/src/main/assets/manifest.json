@@ -1,16 +1,30 @@
 {
   "dir": "ltr",
   "lang": "en-us",
-  "name": "Microsoft - Official Home Page",
-  "scope": "https://www.microsoft.com/*/*",
-  "display": "standalone",
-  "start_url": "https://www.microsoft.com/",
-  "short_name": "Microsoft - Off",
-  "theme_color": "transparent",
-  "description": "At Microsoft our mission and values are to help people and businesses throughout the world realize their full potential.",
+  "short_name": "A Cloud Guru",
+  "name": "A Cloud Guru",
+  "description": "Our mission is to teach the world to cloud.",
   "orientation": "any",
-  "background_color": "transparent",
-  "related_applications": [],
-  "prefer_related_applications": false,
-  "icons": []
+  "scope": "https://acg-pwa.sampsonjoliver.now.sh/*/*",
+  "start_url": "https://acg-pwa.sampsonjoliver.now.sh/",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }

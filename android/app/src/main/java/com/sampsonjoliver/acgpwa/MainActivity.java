@@ -1,4 +1,4 @@
-package microsoft.com.pwa;
+package com.sampsonjoliver.acgpwa;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

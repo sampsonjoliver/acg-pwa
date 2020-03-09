@@ -1,4 +1,4 @@
-package microsoft.com.pwa;
+package com.sampsonjoliver.acgpwa;
 
 import android.content.Intent;
 import android.net.Uri;

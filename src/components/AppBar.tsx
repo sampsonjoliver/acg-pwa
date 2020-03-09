@@ -9,12 +9,21 @@ import {
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { useHistory } from 'react-router';
 
-export const AppBar: React.FC<{ title: string; showBack?: boolean }> = ({
+type Props = {
+  title?: string;
+  showBack?: boolean;
+  backIcon?: () => JSX.Element;
+};
+
+export const AppBar: React.FC<Props> = ({
   title,
   showBack,
+  backIcon,
   children,
 }) => {
   const history = useHistory();
+
+  const BackIcon = backIcon ?? (() => <ArrowBackIcon />);
 
   return (
     <Box position="fixed" top={0} width="100%" zIndex={100}>
@@ -29,12 +38,14 @@ export const AppBar: React.FC<{ title: string; showBack?: boolean }> = ({
                 history.goBack();
               }}
             >
-              <ArrowBackIcon />
+              <BackIcon />
             </IconButton>
           )}
-          <Box flexGrow={1}>
-            <Typography variant="h6">{title}</Typography>
-          </Box>
+          {title && (
+            <Box flexGrow={1}>
+              <Typography variant="h6">{title}</Typography>
+            </Box>
+          )}
           {children}
         </Toolbar>
       </MuiAppBar>
